@@ -1,0 +1,47 @@
+#!/usr/bin/env node
+
+/**
+ * Module dependencies.
+ */
+
+var program = require('commander');
+var Lr = require('..');
+
+// usage
+
+program
+  .version(require('../package.json').version)
+  .usage('[options] [path]:[command] ...')
+
+// options
+
+program
+  .option('-p, --port <port>', 'listen on port', 35729)
+  .option('-m, --mute <char>', 'character to suppress reloading', '@')
+  .option('-f, --file <path>', 'path to configuration file', '.livereload.yml')
+  .option('-v, --verbose', 'more detailed log messages', false);
+
+// arguments
+
+program.parse(process.argv);
+
+// initialize `Livereload`
+
+var lr = new Lr(program);
+
+// run
+
+program.args.forEach(function(arg) {
+  var parts = arg.split(':');
+  var path = parts[0];
+  var command = parts[1];
+
+  var opts = {
+    mute: program.mute
+  };
+
+  lr.run(path, command, opts, function() {
+    // TODO maybe get rid of this.
+  });
+});
+

@@ -1,0 +1,34 @@
+{
+  "name": "lr",
+  "version": "0.1.0",
+  "description": "Livereload interface for velociraptors",
+  "main": "index.js",
+  "bin": {
+    "lr": "bin/lr.js"
+  },
+  "scripts": {
+    "test": "make test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mvanasse/lr"
+  },
+  "keywords": [
+    "livereload",
+    "node",
+    "browser"
+  ],
+  "author": "Michael Vanasse",
+  "license": "MIT",
+  "dependencies": {
+    "commander": "~2.0.0",
+    "monocle": "~1.1.51",
+    "js-yaml": "~2.1.3",
+    "glob": "~3.2.7",
+    "livereload-server": "~0.2.3"
+  },
+  "devDependencies": {
+    "should": "~2.1.0",
+    "mocha": "~1.14.0"
+  }
+}
