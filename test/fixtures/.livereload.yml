@@ -1,4 +1,3 @@
 public/*.js: '@make build/build.js'
 public/*!(js): '@make build/build.css'
 build/*:
-

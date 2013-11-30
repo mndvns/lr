@@ -19,7 +19,8 @@ program
   .option('-p, --port <port>', 'listen on port', 35729)
   .option('-m, --mute <char>', 'character to suppress reloading', '@')
   .option('-f, --file <path>', 'path to configuration file', '.livereload.yml')
-  .option('-v, --verbose', 'more detailed log messages', false);
+  .option('-v, --verbose', 'more detailed log messages', false)
+  .option('-s, --silent', 'suppress all log messages', false);
 
 // arguments
 
@@ -41,7 +42,7 @@ program.args.forEach(function(arg) {
   };
 
   lr.run(path, command, opts, function() {
-    // TODO maybe get rid of this.
+    // TODO maybe get rid of this. maybe not.
   });
 });
 
