@@ -4,7 +4,7 @@
   "description": "Livereload interface for velociraptors",
   "main": "index.js",
   "bin": {
-    "lr": "bin/lr.js"
+    "lr": "bin/lr"
   },
   "scripts": {
     "test": "make test"
