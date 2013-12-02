@@ -7,10 +7,10 @@
   "dependencies": {},
   "development": {},
   "license": "MIT",
+  "main": "public/javascripts/baz.js",
   "scripts": [
     "public/javascripts/baz.js",
-    "public/javascripts/foo.js",
-    "public/javascripts/simple.js"
+    "public/javascripts/foo.js"
   ],
   "styles": [
     "public/stylesheets/something.css"

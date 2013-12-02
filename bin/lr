@@ -18,7 +18,8 @@ program
 program
   .option('-p, --port <port>', 'listen on port', 35729)
   .option('-m, --mute <char>', 'character to suppress reloading', '@')
-  .option('-f, --file <path>', 'path to configuration file', '.livereload.yml')
+  .option('-f, --file <path>', 'path to configuration file', '.lr.yml')
+  .option('-i, --ignore', 'ignore all configuration files', false)
   .option('-v, --verbose', 'more detailed log messages', false)
   .option('-s, --silent', 'suppress all log messages', false);
 

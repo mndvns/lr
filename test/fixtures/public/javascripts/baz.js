@@ -1,1 +1,5 @@
-console.log('bazyyyzzzz');
+require('./foo');
+
+module.exports = (function() {
+  console.log('baz!');
+})();

@@ -1,1 +1,3 @@
-console.log('this is foo');
+module.exports = (function() {
+  console.log('foo!');
+})();
