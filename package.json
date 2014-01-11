@@ -25,10 +25,7 @@
     "monocle": "~1.1.51",
     "js-yaml": "~2.1.3",
     "livereload-server": "~0.2.3",
-    "component-filter": "~0.1.0",
     "colors": "~0.6.2",
-    "xtend": "~2.1.1",
-    "type-component": "*",
     "throttleit": "0.0.2"
   },
   "devDependencies": {
