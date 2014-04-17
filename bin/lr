@@ -26,26 +26,23 @@ module.exports = program
 
 program.parse(process.argv);
 
-var Lr = require('..');
+var LR = require('..');
 
 // initialize `Livereload`
-var lr = typeof Lr === 'function'
-  ? new Lr(program)
-  : program;
+var lr = new LR();
 
+if (program.silent) lr.silent();
 
 program.args.forEach(function run(arg) {
   var parts = arg.split(':');
   var path = parts[0];
   var command = parts[1];
 
-  var opts = {
-    mute: program.mute
-  };
+  lr.watch(path, command);
+});
 
-  lr.run(path, command, opts, function() {
-    // TODO maybe get rid of this. maybe not.
-  });
+lr.listen(program.port, function() {
+  console.log('livereload listening on port', program.port);
 });
 
 /**
@@ -60,4 +57,3 @@ function tty(status) {
   // TODO finish this
   /* process.stdout.write('\n@@@@' + TTY.isatty() + '\n'); */
 }
-
