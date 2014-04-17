@@ -29,7 +29,8 @@
     "express": "^3.5.1",
     "websocket.io": "^0.2.1",
     "debug": "^0.8.0",
-    "sane": "^0.3.2"
+    "sane": "^0.3.2",
+    "minimatch": "^0.2.14"
   },
   "devDependencies": {
     "should": "~2.1.0",
