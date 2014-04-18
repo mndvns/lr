@@ -46,9 +46,11 @@ program.args.forEach(function run(arg) {
     ignore = true;
   }
 
-  lr.watch(path, command, ignore, function(file) {
-    if (program.silent !== true) console.log('reloading', file);
-  });
+  lr.watch(path, command, ignore);
+});
+
+lr.start(function(file) {
+  if (program.silent !== true) console.log('reloading', file);
 });
 
 lr.listen(program.port, function() {
