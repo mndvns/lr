@@ -2,11 +2,14 @@
 test:
 	@./node_modules/.bin/mocha \
 		--require should \
-	        test/*.test.js
+		--timeout 5000 \
+			test/*.test.js
 
 watch:
 	@./node_modules/.bin/mocha \
 		--require should \
-		--watch
+		--timeout 5000 \
+		--watch \
+			test/*.test.js
 
 .PHONY: test watch
