@@ -6,8 +6,17 @@
 
 var debug = require('debug')('lr:bin');
 var program = require('commander');
-var lrrc = require('../lib/lrrc');
 var TTY = require('tty');
+var LR = require('..');
+var lrrc = require('../lib/lrrc');
+
+// get app defaults
+var defaults = require('../lib/defaults.json');
+
+// get current working dir
+var cwd = process.cwd();
+
+// define defaults
 
 /**
  * Configure and expose `program`.
@@ -16,11 +25,11 @@ var TTY = require('tty');
 module.exports = program
   .version(require('../package.json').version)
   .usage('[options] [path]:[command] ...')
-  .option('-p, --port <port>', 'listen on port', 35729)
-  .option('-m, --mute <char>', 'character to suppress reloading', '@')
+  .option('-p, --port <port>', 'listen on port', defaults.port)
+  .option('-m, --mute <char>', 'character to suppress reloading', defaults.mute)
   .option('-C, --ignore-config', 'ignore all config files')
   .option('-c, --config <path>', 'path to configuration file', '.lr.yml')
-  .option('-i, --ignore <pattern>,...', 'regular expressions(s) of files to ignore', list, [])
+  .option('-i, --ignore <pattern>,...', 'regular expression(s) of files to ignore', list, [])
   .option('-v, --verbose', 'more detailed log messages')
   .option('-s, --silent', 'suppress all log messages', tty)
   .option('-o, --stdout', 'write log messages to process stdout', false)
@@ -28,7 +37,10 @@ module.exports = program
 
 program.parse(process.argv);
 
-var LR = require('..');
+debug('port', program.port);
+debug('config', program.config);
+debug('ignore', program.ignore);
+debug('silent', program.silent);
 
 // initialize `Livereload`
 var lr = new LR();
@@ -37,10 +49,10 @@ if (program.silent) lr.silent();
 
 if (program.ignoreConfig !== true) {
 
-  var cwd = process.cwd();
-  var args = lrrc.readFile(cwd + '/' + program.config);
+  var args = lrrc.loadPath(cwd);
+  debug('args', args);
 
-  for (var k in args) lr.watch(k, args[k].cmd, args[k].ignore);
+  for (var k in args) lr.watch(k, args[k].cmd, args[k].muted);
 
 } else {
 
@@ -50,14 +62,14 @@ if (program.ignoreConfig !== true) {
     var parts = arg.split(':');
     var path = parts[0];
     var command = parts[1];
-    var ignore;
+    var muted;
 
     if (command && command.indexOf(program.mute) === 0) {
       command = command.slice(1);
-      ignore = true;
+      muted = true;
     }
 
-    lr.watch(path, command, ignore);
+    lr.watch(path, command, muted);
   });
 }
 

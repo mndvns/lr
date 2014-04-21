@@ -1,0 +1,9 @@
+{
+  "port": 35729,
+  "mute": "@",
+  "ignore": [
+    "node_modules",
+    "components",
+    ".git"
+  ]
+}

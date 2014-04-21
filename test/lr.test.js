@@ -15,9 +15,9 @@ describe('LR', function() {
 
     lr.root = __dirname;
 
-    lr.watch('*/*.json', 'echo json');
-    lr.watch('*/.*.yml', 'echo yml');
-    lr.watch('**', 'echo other json', true);
+    lr.watch('fixtures/*/*.json', 'echo json');
+    lr.watch('fixtures/*/.*.yml', 'echo yml');
+    lr.watch('fixtures/**', 'echo other json', true);
   });
 
   afterEach(function() {
@@ -31,9 +31,9 @@ describe('LR', function() {
       if (!--i) done();
     });
 
-    touch('fixtures/.lr.yml');
-    touch('fixtures/component.json');
-    touch('fixtures/package.json');
+    touch('fixtures/server/.lr.yml');
+    touch('fixtures/server/component.json');
+    touch('fixtures/server/package.json');
   });
 
   it('should start a server', function(done) {
@@ -48,7 +48,7 @@ describe('LR', function() {
     });
 
     lr._app.get('/ready', function(req, res) {
-      touch('fixtures/component.json');
+      touch('fixtures/server/component.json');
       res.send(200);
     });
 

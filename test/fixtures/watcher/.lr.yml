@@ -1,0 +1,4 @@
+public/javascripts/*: '@component build -u ../../node_modules/component-filter/styles'
+public/stylesheets/*: '@component build -u ../../node_modules/component-filter/scripts'
+build/*:
+views/*:

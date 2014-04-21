@@ -13,9 +13,9 @@ describe('watcher', function(){
   });
 
   it('should call a function on change', function(done) {
-    var path = 'fixtures/component.json';
+    var path = 'fixtures/watcher/component.json';
     var globs = {
-      '*/*.json': {
+      'fixtures/*/*.json': {
         cmd: function(file, cb) {
           file.should.eql(path);
           cb();
@@ -33,15 +33,15 @@ describe('watcher', function(){
   });
 
   it('should execute a command line string', function(done) {
-    var json = 'fixtures/component.json';
-    var yml = 'fixtures/.lr.yml';
+    var json = 'fixtures/watcher/component.json';
+    var yml = 'fixtures/watcher/.lr.yml';
 
     var globs = {
-      '*/*.json': {
+      'fixtures/*/*.json': {
         cmd: 'touch ' + yml,
         ignore: true
       },
-      '*/.*.yml': {
+      'fixtures/*/.*.yml': {
         cmd: function(file, cb) {
           file.should.eql(yml);
           cb();

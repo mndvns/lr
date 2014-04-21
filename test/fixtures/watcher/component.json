@@ -1,0 +1,20 @@
+{
+  "name": "test",
+  "repo": "test/test",
+  "description": "",
+  "version": "0.0.1",
+  "keywords": [],
+  "dependencies": {
+    "component/type": "*"
+  },
+  "development": {},
+  "license": "MIT",
+  "main": "public/javascripts/baz.js",
+  "scripts": [
+    "public/javascripts/baz.js",
+    "public/javascripts/foo.js"
+  ],
+  "styles": [
+    "public/stylesheets/something.css"
+  ]
+}
