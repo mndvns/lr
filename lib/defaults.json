@@ -7,6 +7,10 @@
     "short": "m",
     "value": "@"
   },
+  "tty": {
+    "short": "t",
+    "value": "auto"
+  },
   "ignore": {
     "short": "i",
     "value": [

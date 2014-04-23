@@ -32,8 +32,13 @@ module.exports = program
   .option('-s, --silent', 'suppress all log messages', tty)
   .option('-o, --stdout', 'write log messages to process stdout', false)
   .option('-I, --indent', 'don\'t print indentation lines', tty(false))
+  .option('-t, --tty <when>', 'treat output as tty [auto|always|never]', defaults.tty.value)
 
 program.parse(process.argv);
+
+var tty = program.tty;
+var log = require('../lib/utils')
+  .log(tty !== 'never' && tty !== 'false' && tty !== false)
 
 debug('port', program.port);
 debug('config', program.config);
@@ -71,12 +76,13 @@ if (program.ignoreConfig !== true) {
   });
 }
 
+
 lr.start(function(file) {
-  if (program.silent !== true) console.log('reloading', file);
+  if (program.silent !== true) log('reloading ' + file);
 });
 
 lr.listen(program.port, function() {
-  if (program.silent !== true) console.log('livereload listening on port', program.port);
+  if (program.silent !== true) log('listening on port ' + program.port);
 });
 
 /**
