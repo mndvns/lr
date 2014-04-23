@@ -1,6 +1,6 @@
 {
   "name": "lr",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Livereload interface for hackers",
   "main": "index.js",
   "bin": {
