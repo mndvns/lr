@@ -3,7 +3,6 @@
   "mute": "@",
   "ignore": [
     "node_modules",
-    "components",
     ".git"
   ]
 }
