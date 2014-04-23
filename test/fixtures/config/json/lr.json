@@ -1,0 +1,5 @@
+{
+  "--port": 8888,
+  "*.js": "@echo 'muted'",
+  "*.html": "echo 'muted'"
+}

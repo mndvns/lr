@@ -1,8 +1,17 @@
 {
-  "port": 35729,
-  "mute": "@",
-  "ignore": [
-    "node_modules",
-    ".git"
-  ]
+  "port": {
+    "short": "p",
+    "value": 35729
+  },
+  "mute": {
+    "short": "m",
+    "value": "@"
+  },
+  "ignore": {
+    "short": "i",
+    "value": [
+      "node_modules",
+      ".git"
+    ]
+  }
 }

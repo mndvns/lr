@@ -1,1 +1,1 @@
-'*.js': 'echo hello'
+'--port': 8888'*.js': '@echo "muted"''*.html': 'echo "not muted"'

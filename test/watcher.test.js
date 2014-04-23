@@ -48,6 +48,7 @@ describe('watcher', function(){
         }
       }
     };
+
     watcher = watch(globs, {root: __dirname}, function(file, muted) {
       if (muted) return file.should.eql(json);
       file.should.eql(yml);

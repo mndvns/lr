@@ -1,15 +1,19 @@
 
 test:
-	@./node_modules/.bin/mocha \
+	@DEBUG=lr* \
+	./node_modules/.bin/mocha \
 		--require should \
 		--timeout 5000 \
+		--bail \
 			test/*.test.js
 
 watch:
-	@./node_modules/.bin/mocha \
+	@DEBUG=lr* \
+	./node_modules/.bin/mocha \
 		--require should \
 		--timeout 5000 \
 		--watch \
+		--bail \
 			test/*.test.js
 
 .PHONY: test watch
