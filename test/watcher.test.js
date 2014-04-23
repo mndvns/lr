@@ -39,7 +39,7 @@ describe('watcher', function(){
     var globs = {
       'fixtures/*/*.json': {
         cmd: 'touch ' + yml,
-        ignore: true
+        muted: true
       },
       'fixtures/*/.*.yml': {
         cmd: function(file, cb) {
@@ -48,8 +48,8 @@ describe('watcher', function(){
         }
       }
     };
-    watcher = watch(globs, {root: __dirname}, function(file, ignore) {
-      if (ignore) return file.should.eql(json);
+    watcher = watch(globs, {root: __dirname}, function(file, muted) {
+      if (muted) return file.should.eql(json);
       file.should.eql(yml);
       done();
     });
