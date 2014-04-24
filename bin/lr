@@ -52,7 +52,7 @@ if (program.silent) lr.silent();
 
 if (program.ignoreConfig !== true) {
 
-  var args = config.loadPath(cwd);
+  var args = config.loadPath(cwd, {filename: program.config}).commands;
   debug('args', args);
 
   for (var k in args) lr.watch(k, args[k].cmd, args[k].muted);
