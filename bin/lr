@@ -11,7 +11,7 @@ var LR = require('..');
 var config = require('../lib/config');
 
 // get app defaults
-var defaults = require('../lib/defaults.json');
+var defaults = require('../lib/defaults');
 
 // get current working dir
 var cwd = process.cwd();
@@ -24,65 +24,36 @@ module.exports = program
   .version(require('../package.json').version)
   .usage('[options] [path]:[command] ...')
   .option('-p, --port <port>', 'listen on port', defaults.port.value)
-  .option('-m, --mute <char>', 'character to suppress reloading', defaults.mute.value)
-  .option('-C, --ignore-config', 'ignore all config files')
-  .option('-c, --config <path>', 'path to configuration file', '.lr.yml')
+  .option('-c, --config <path>', 'path to configuration file')
   .option('-i, --ignore <pattern>,...', 'regular expression(s) of files to ignore', list, [])
   .option('-v, --verbose', 'more detailed log messages')
-  .option('-s, --silent', 'suppress all log messages', tty)
-  .option('-o, --stdout', 'write log messages to process stdout', false)
-  .option('-I, --indent', 'don\'t print indentation lines', tty(false))
+  .option('-s, --silent', 'suppress all log messages')
   .option('-t, --tty <when>', 'treat output as tty [auto|always|never]', defaults.tty.value)
 
 program.parse(process.argv);
 
-var tty = program.tty;
-var log = require('../lib/utils')
-  .log(tty !== 'never' && tty !== 'false' && tty !== false)
+var options = {};
+options.port = program.port;
+options.config = program.config;
+options.ignore = program.ignore;
+options.verbose = program.verbose;
+options.silent = program.silent;
+options.tty = program.tty;
 
-debug('port', program.port);
-debug('config', program.config);
-debug('ignore', program.ignore);
-debug('silent', program.silent);
+var lr = new LR(options);
 
-// initialize `Livereload`
-var lr = new LR();
+var conf = lr.loadPath(cwd, options);
+var commands = conf.commands;
+var options = conf.options;
 
-if (program.silent) lr.silent();
-
-if (program.ignoreConfig !== true) {
-
-  var args = config.loadPath(cwd, {filename: program.config}).commands;
-  debug('args', args);
-
-  for (var k in args) lr.watch(k, args[k].cmd, args[k].muted);
-
-} else {
-
-  if (program.args.length === 0) program.args.push('*');
-
-  program.args.forEach(function run(arg) {
-    var parts = arg.split(':');
-    var path = parts[0];
-    var command = parts[1];
-    var muted;
-
-    if (command && command.indexOf(program.mute) === 0) {
-      command = command.slice(1);
-      muted = true;
-    }
-
-    lr.watch(path, command, muted);
-  });
-}
-
+for (var k in commands) lr.watch(k, commands[k].cmd, commands[k].muted);
 
 lr.start(function(file) {
-  if (program.silent !== true) log('reloading ' + file);
+  lr.log('reloading ' + file);
 });
 
 lr.listen(program.port, function() {
-  if (program.silent !== true) log('listening on port ' + program.port);
+  lr.log('listening on port ' + program.port);
 });
 
 /**

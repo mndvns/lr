@@ -1,21 +1,17 @@
-{
-  "port": {
-    "short": "p",
-    "value": 35729
+module.exports = {
+  'port': {
+    'short': 'p',
+    'value': 35729
   },
-  "mute": {
-    "short": "m",
-    "value": "@"
+  'tty': {
+    'short': 't',
+    'value': 'auto'
   },
-  "tty": {
-    "short": "t",
-    "value": "auto"
-  },
-  "ignore": {
-    "short": "i",
-    "value": [
-      "node_modules",
-      ".git"
+  'ignore': {
+    'short': 'i',
+    'value': [
+      'node_modules',
+      '.git'
     ]
   }
 }
