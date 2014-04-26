@@ -42,9 +42,8 @@ options.tty = program.tty;
 
 var lr = new LR(options);
 
-var conf = lr.loadPath(cwd, options);
-var commands = conf.commands;
-var options = conf.options;
+var commands = lr._config.commands;
+var options = lr._config.options;
 
 for (var k in commands) lr.watch(k, commands[k].cmd, commands[k].muted);
 
