@@ -43,7 +43,7 @@ options.tty = program.tty;
 var lr = new LR(options);
 
 var commands = lr._config.commands;
-var options = lr._config.options;
+var opts = lr._config.options;
 
 for (var k in commands) lr.watch(k, commands[k].cmd, commands[k].muted);
 
@@ -51,8 +51,10 @@ lr.start(function(file) {
   lr.log('reloading ' + file);
 });
 
-lr.listen(program.port, function() {
-  lr.log('listening on port ' + program.port);
+debug('opts', opts);
+
+lr.listen(opts.port, function() {
+  lr.log('listening on port ' + opts.port);
 });
 
 /**
