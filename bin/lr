@@ -32,6 +32,8 @@ module.exports = program
 
 program.parse(process.argv);
 
+debug('args', program.args);
+
 var options = {};
 options.port = program.port;
 options.config = program.config;
@@ -43,7 +45,7 @@ options.tty = program.tty;
 var lr = new LR(options);
 
 var commands = lr._config.commands;
-var opts = lr._config.options;
+var opts = lr._config.options || options;
 
 for (var k in commands) lr.watch(k, commands[k].cmd, commands[k].muted);
 
