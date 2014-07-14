@@ -1,7 +1,7 @@
 
 # lr
 
-Livereload is an [amazing](http://livereload.com) tool comprised of [many](https://github.com/livereload/livereload-core) [somewhat](https://github.com/livereload/livereload-cli) [half-baked](https://github.com/livereload/livereload-protocol) components. This project provides a high-level abstaction of livereload so developers can accomplish much more with it.
+A CLI for [livereload](http://livereload.com).
 
 ## Installation
 

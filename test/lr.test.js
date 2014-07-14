@@ -2,6 +2,7 @@
  * Module dependencies
  */
 
+var debug = require('debug')('lr:test');
 var LR = require('..');
 var touch = require('./utils').touch;
 var phantomjs = require('phantomjs').path;

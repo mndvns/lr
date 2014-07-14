@@ -16,6 +16,9 @@ var defaults = require('../lib/defaults');
 // get current working dir
 var cwd = process.cwd();
 
+// name process
+process.title = 'LR';
+
 /**
  * Configure and expose `program`.
  */
