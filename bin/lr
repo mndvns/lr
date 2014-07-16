@@ -16,9 +16,6 @@ var defaults = require('../lib/defaults');
 // get current working dir
 var cwd = process.cwd();
 
-// name process
-process.title = 'LR';
-
 /**
  * Configure and expose `program`.
  */
@@ -61,6 +58,9 @@ debug('opts', opts);
 lr.listen(opts.port, function() {
   lr.log('listening on port ' + opts.port);
 });
+
+// name process
+process.title = 'LR [' + options.port + ']';
 
 /**
  * Parse list.
