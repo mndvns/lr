@@ -56,7 +56,7 @@ lr.start(function(file) {
 debug('opts', opts);
 
 lr.listen(opts.port, function() {
-  lr.log('listening on port ' + opts.port);
+  lr.log('listening on port ' + options.port);
 });
 
 // name process
