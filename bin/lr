@@ -6,11 +6,8 @@
 
 var debug = require('debug')('lr:bin');
 var program = require('commander');
-var TTY = require('tty');
 var LR = require('..');
 var config = require('../lib/config');
-
-// get app defaults
 var defaults = require('../lib/defaults');
 
 // get current working dir
@@ -60,17 +57,13 @@ lr.listen(opts.port, function() {
 });
 
 // name process
-process.title = 'LR [' + options.port + ']';
+process.title = 'lr';
 
 /**
- * Parse list.
+ * Parse list with a given `str`.
  */
 
 function list(str) {
   return str.split(/ *, */);
 }
 
-function tty(status) {
-  // TODO finish this
-  /* process.stdout.write('\n@@@@' + TTY.isatty() + '\n'); */
-}
