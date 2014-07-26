@@ -13,9 +13,10 @@ var defaults = require('../lib/defaults');
 // get current working dir
 var cwd = process.cwd();
 
-/**
- * Configure and expose `program`.
- */
+// name process
+process.title = 'lr';
+
+// configure and expose `program`.
 
 module.exports = program
   .version(require('../package.json').version)
@@ -29,20 +30,10 @@ module.exports = program
 
 program.parse(process.argv);
 
-debug('args', program.args);
-
-var options = {};
-options.port = program.port;
-options.config = program.config;
-options.ignore = program.ignore;
-options.verbose = program.verbose;
-options.silent = program.silent;
-options.tty = program.tty;
-
-var lr = new LR(options);
+var lr = new LR(program);
 
 var commands = lr._config.commands;
-var opts = lr._config.options || options;
+var opts = lr._config.options;
 
 for (var k in commands) lr.watch(k, commands[k].cmd, commands[k].muted);
 
@@ -53,11 +44,8 @@ lr.start(function(file) {
 debug('opts', opts);
 
 lr.listen(opts.port, function() {
-  lr.log('listening on port ' + options.port);
+  lr.log('listening on port ' + opts.port);
 });
-
-// name process
-process.title = 'lr';
 
 /**
  * Parse list with a given `str`.
@@ -66,4 +54,3 @@ process.title = 'lr';
 function list(str) {
   return str.split(/ *, */);
 }
-

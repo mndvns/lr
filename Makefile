@@ -1,19 +1,12 @@
 
+MOCHA      = ./node_modules/.bin/mocha
+MOCHA_OPTS = --require should --timeout 5000 --bail test/*.test.js
+DEBUG_OPTS = lr:config
+
 test:
-	@DEBUG=lr:config \
-	./node_modules/.bin/mocha \
-		--require should \
-		--timeout 5000 \
-		--bail \
-			test/*.test.js
+	@DEBUG=$(DEBUG_OPTS) $(MOCHA) $(MOCHA_OPTS)
 
 watch:
-	@DEBUG=lr:config \
-	./node_modules/.bin/mocha \
-		--require should \
-		--timeout 5000 \
-		--watch \
-		--bail \
-			test/*.test.js
+	@DEBUG=$(DEBUG_OPTS) $(MOCHA) $(MOCHA_OPTS) --watch
 
 .PHONY: test watch
