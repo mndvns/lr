@@ -1,6 +1,6 @@
 
 test:
-	@DEBUG=lr* \
+	@DEBUG=lr:config \
 	./node_modules/.bin/mocha \
 		--require should \
 		--timeout 5000 \
@@ -8,7 +8,7 @@ test:
 			test/*.test.js
 
 watch:
-	@DEBUG=lr* \
+	@DEBUG=lr:config \
 	./node_modules/.bin/mocha \
 		--require should \
 		--timeout 5000 \
