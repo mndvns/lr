@@ -7,7 +7,6 @@
 var debug = require('debug')('lr:bin');
 var program = require('commander');
 var LR = require('..');
-var config = require('../lib/config');
 var defaults = require('../lib/defaults');
 
 // get current working dir
@@ -17,7 +16,6 @@ var cwd = process.cwd();
 process.title = 'lr';
 
 // configure and expose `program`.
-
 module.exports = program
   .version(require('../package.json').version)
   .usage('[options] [path]:[command] ...')
@@ -32,8 +30,9 @@ program.parse(process.argv);
 
 var lr = new LR(program);
 
+debug('lr instance', lr);
+
 var commands = lr._config.commands;
-var opts = lr._config.options;
 
 for (var k in commands) lr.watch(k, commands[k].cmd, commands[k].muted);
 
@@ -41,10 +40,8 @@ lr.start(function(file) {
   lr.log('reloading ' + file);
 });
 
-debug('opts', opts);
-
-lr.listen(opts.port, function() {
-  lr.log('listening on port ' + opts.port);
+lr.listen(lr._options.port, function() {
+  lr.log('listening on port ' + lr._options.port);
 });
 
 /**
