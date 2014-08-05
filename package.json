@@ -1,6 +1,6 @@
 {
   "name": "lr",
-  "version": "0.1.14",
+  "version": "0.1.15",
   "description": "Livereload interface for hackers",
   "main": "index.js",
   "bin": {
@@ -26,6 +26,7 @@
     "component-consoler": "^1.1.1",
     "debug": "^0.8.0",
     "express": "^3.5.1",
+    "ini": "^1.2.1",
     "js-yaml": "^3.1.0",
     "livereload-protocol": "^0.2.2",
     "minimatch": "^0.2.14",
