@@ -1,6 +1,6 @@
 {
   "name": "lr",
-  "version": "0.1.13",
+  "version": "0.1.14",
   "description": "Livereload interface for hackers",
   "main": "index.js",
   "bin": {
@@ -21,16 +21,17 @@
   "author": "Michael Vanasse",
   "license": "MIT",
   "dependencies": {
-    "commander": "~2.0.0",
     "colors": "~0.6.2",
-    "throttleit": "0.0.2",
+    "commander": "~2.0.0",
     "component-consoler": "^1.1.1",
-    "livereload-protocol": "^0.2.2",
-    "express": "^3.5.1",
-    "websocket.io": "^0.2.1",
     "debug": "^0.8.0",
-    "sane": "^0.3.2",
+    "express": "^3.5.1",
+    "js-yaml": "^3.1.0",
+    "livereload-protocol": "^0.2.2",
     "minimatch": "^0.2.14",
+    "sane": "^0.3.2",
+    "throttleit": "0.0.2",
+    "websocket.io": "^0.2.1",
     "whatever-format": "^0.0.1"
   },
   "devDependencies": {
